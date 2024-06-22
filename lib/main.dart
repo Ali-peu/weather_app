@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,11 +11,15 @@ void main() async {
   final weahterApiKey = jsonDecode(
       await rootBundle.loadString('assets/keys.json'))['weather_api_key'];
 
-  final WeahterApi api = WeahterApi(apiKey: weahterApiKey);
+  final WeatherApi api = WeatherApi(apiKey: weahterApiKey);
 
-  final data = await api.getCurrentCityWeather();
+  final data = await api.getCurrentCityWeather('Almaty');
   if (data != null) {
+    log('Data found!');
+
     debugPrint(data.toString());
+  } else {
+    log('Data not found!');
   }
   runApp(Container());
 }
