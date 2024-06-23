@@ -18,18 +18,26 @@ class CityModel extends Equatable {
       required this.weatherConditionIconUrl,
       required this.windKmh,
       required this.cloud,
-      this.forecastDays = const [],
-      required this.localTime});
+      required this.localTime,
+      this.forecastDays = const []});
 
   static CityModel fromJson(Map<String, dynamic> data) {
-    final cityName = data['location']['name'] as String;
-    final currentTemperature = (data['current']['temp_c'] as num).toDouble();
-    final weatherConditionText = data['current']['condition']['text'] as String;
+    final cityName =
+        (data['location'] as Map<String, dynamic>)['name'] as String;
+    final currentTemperature =
+        ((data['current'] as Map<String, dynamic>)['temp_c'] as num).toDouble();
+    final weatherConditionText =
+        ((data['current'] as Map<String, dynamic>)['condition']
+            as Map<String, dynamic>)['text'] as String;
     final weatherConditionIconUrl =
-        data['current']['condition']['icon'] as String;
-    final windKmh = (data['current']['wind_kph'] as num).toDouble();
-    final cloud = data['current']['cloud'] as int;
-    final localTime = data['location']['localtime'] as String;
+        ((data['current'] as Map<String, dynamic>)['condition']
+            as Map<String, dynamic>)['icon'] as String;
+    final windKmh =
+        ((data['current'] as Map<String, dynamic>)['wind_kph'] as num)
+            .toDouble();
+    final cloud = (data['current'] as Map<String, dynamic>)['cloud'] as int;
+    final localTime =
+        (data['location'] as Map<String, dynamic>)['localtime'] as String;
 
     return CityModel(
       cityName: cityName,
@@ -42,7 +50,7 @@ class CityModel extends Equatable {
     );
   }
 
-  CityModel copyWith(List<ForecastModel>? forecastDays) {
+  CityModel copyWith({List<ForecastModel>? forecastDays}) {
     return CityModel(
         cityName: cityName,
         currentTemperature: currentTemperature,

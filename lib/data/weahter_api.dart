@@ -13,7 +13,7 @@ class WeatherApi {
           'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$cityName&aqi=no');
 
       if (response.statusCode == 200) {
-        return CityModel.fromJson(response.data);
+        return CityModel.fromJson(response.data as  Map<String,dynamic>);
       } else {
         throw Exception(response);
       }
