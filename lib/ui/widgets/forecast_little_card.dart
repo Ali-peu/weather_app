@@ -27,7 +27,7 @@ class ForecastLittleCard extends StatelessWidget {
         children: [
           Text(getDayAndMonthFromString(
               forecastWeather.forecastDay, settingsProvider)),
-          Image.network('//cdn.weatherapi.com/weather/64x64/day/116.png'),
+          Image.network(forecastWeather.forecastDayIcon),
           Text('max: ${forecastWeather.forecastMaxAvgTemperature}°С',
               style: Theme.of(context).textTheme.displaySmall),
           Text('min: ${forecastWeather.forecastMinAvgTemperature}°С',

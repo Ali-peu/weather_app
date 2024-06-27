@@ -31,8 +31,7 @@ class CityModel extends Equatable {
         ((data['current'] as Map<String, dynamic>)['condition']
             as Map<String, dynamic>)['text'] as String;
     final weatherConditionIconUrl =
-        ((data['current'] as Map<String, dynamic>)['condition']
-            as Map<String, dynamic>)['icon'] as String;
+        'https:${((data['current'] as Map<String, dynamic>)['condition'] as Map<String, dynamic>)['icon'] as String}';
     final windKmh =
         ((data['current'] as Map<String, dynamic>)['wind_kph'] as num)
             .toDouble();

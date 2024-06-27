@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -21,8 +22,8 @@ class WeatherManagerBloc
           weatherRepository.getCurrentCityWeather(cityName: 'Yakutsk'),
         ]);
 
+        log(results[0].toString(), name: 'result : ');
         if (results.contains(null)) {
-
           emit(state.copyWith(pageStatus: PageStatus.failure));
         } else {
           emit(state.copyWith(
@@ -34,6 +35,5 @@ class WeatherManagerBloc
         emit(state.copyWith(pageStatus: PageStatus.failure));
       }
     });
-    
   }
 }

@@ -20,8 +20,8 @@ class ForecastModel extends Equatable {
             (data['day'] as Map<String, dynamic>)['maxtemp_c'] as double,
         forecastMinAvgTemperature:
             (data['day'] as Map<String, dynamic>)['mintemp_c'] as double,
-        forecastDayIcon: ((data['day'] as Map<String, dynamic>)['condition']
-            as Map<String, dynamic>)['icon'] as String);
+        forecastDayIcon: 'https:${((data['day'] as Map<String, dynamic>)['condition']
+            as Map<String, dynamic>)['icon'] as String}');
   }
 
   @override
