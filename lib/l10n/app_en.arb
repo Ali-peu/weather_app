@@ -1,0 +1,13 @@
+{
+    "weather": "Weather",
+    "settings": "Settings",
+    "changeLocale": "Change Locale",
+    "changeTheme": "Change Theme",
+    "inSync": "in sync",
+    "dailyForecast": "Daily Forecast",
+    "cloudInPer": "Cloud cover: ",
+    "wind": "Wind",
+    "windKMH": "km/h",
+    "giveFeedback": "Give Feedback",
+    "somethingWasGoneWrong": "Please update! Something was gone wrong"
+}

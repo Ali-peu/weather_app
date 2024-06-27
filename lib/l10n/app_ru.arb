@@ -1,0 +1,15 @@
+{
+    "weather": "Погода",
+    "settings": "Настройки",
+    "changeLocale": "Изменить язык",
+    "changeTheme": "Изменить тему",
+    "inSync": "текущий",
+    "dailyForecast": "Ежедневный прогноз",
+    "cloudInPer": "Облачность: ",
+    "wind": "Ветер",
+    "windKMH": "км/ч",
+    "giveFeedback": "Оставить отзыв",
+    "somethingWasGoneWrong": "Пожалуйста, обновите! Что-то пошло не так"
+
+
+}
