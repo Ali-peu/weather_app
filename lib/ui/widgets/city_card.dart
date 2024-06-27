@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/domain/models/city_model.dart';
 import 'package:weather_app/ui/city_page.dart';
 
@@ -31,8 +30,7 @@ class CityCard extends StatelessWidget {
             trailing: Image.network(
               city.weatherConditionIconUrl,
               fit: BoxFit.fill,
-              // width: MediaQuery.of(context).size.width * 0.15,
-              // height: MediaQuery.of(context).size.width * 0.15),
+
             )),
       ),
     );
