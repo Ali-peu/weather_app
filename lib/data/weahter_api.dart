@@ -1,18 +1,13 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:weather_app/domain/models/city_model.dart';
-import 'package:weather_app/domain/models/forecast_model.dart';
 
 class WeatherApi {
   final String apiKey;
   WeatherApi({required this.apiKey});
   final Dio _dio = Dio();
 
-
-
   Future<CityModel?> getCurrentCityWeather(
-      {required String cityName, int days = 3}) async {
+      {required String cityName, int days = 10}) async {
     try {
       final response = await _dio.get(
           'http://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$cityName&days=$days&aqi=no&alerts=no');
@@ -22,7 +17,7 @@ class WeatherApi {
 
         final forecastDay = needData2['forecastday'] as List<dynamic>;
 
-        final List<Map<String, dynamic>> listForecast = List.from(forecastDay);
+        final listForecast = List<Map<String, dynamic>>.from(forecastDay);
 
         return CityModel.fromJson(
             response.data as Map<String, dynamic>, listForecast);

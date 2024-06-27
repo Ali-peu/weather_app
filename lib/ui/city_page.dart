@@ -14,7 +14,7 @@ class CityPage extends StatelessWidget {
     final dateFormat = DateFormat('yyyy-MM-dd HH:mm');
 
     final dateTime = dateFormat.parse(city.localTime);
-    return DateFormat.yMMMMEEEEd(appSettingsNotifier.locale).format(dateTime);
+    return DateFormat.yMMMMEEEEd(appSettingsNotifier.locale.languageCode).format(dateTime);
   }
 
   @override

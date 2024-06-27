@@ -8,11 +8,12 @@ class ForecastLittleCard extends StatelessWidget {
   final ForecastModel forecastWeather;
   const ForecastLittleCard({required this.forecastWeather, super.key});
 
-  String getDayAndMonthFromString(String dateTime,AppSettingsNotifier appSettingsNotifier) {
+  String getDayAndMonthFromString(
+      String dateTime, AppSettingsNotifier appSettingsNotifier) {
     final dateFormat = DateFormat('yyyy-MM-dd');
 
     final date = dateFormat.parse(dateTime);
-    return DateFormat.MEd(appSettingsNotifier.locale).format(date);
+    return DateFormat.MEd(appSettingsNotifier.locale.languageCode).format(date);
   }
 
   @override
@@ -24,7 +25,8 @@ class ForecastLittleCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(getDayAndMonthFromString(forecastWeather.forecastDay,settingsProvider)),
+          Text(getDayAndMonthFromString(
+              forecastWeather.forecastDay, settingsProvider)),
           Image.network('//cdn.weatherapi.com/weather/64x64/day/116.png'),
           Text('max: ${forecastWeather.forecastMaxAvgTemperature}°С',
               style: Theme.of(context).textTheme.displaySmall),
