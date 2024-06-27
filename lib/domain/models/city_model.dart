@@ -19,9 +19,10 @@ class CityModel extends Equatable {
       required this.windKmh,
       required this.cloud,
       required this.localTime,
-      this.forecastDays = const []});
+      required this.forecastDays});
 
-  static CityModel fromJson(Map<String, dynamic> data) {
+  static CityModel fromJson(
+      Map<String, dynamic> data, List<Map<String, dynamic>> forecastList) {
     final cityName =
         (data['location'] as Map<String, dynamic>)['name'] as String;
     final currentTemperature =
@@ -39,15 +40,20 @@ class CityModel extends Equatable {
     final localTime =
         (data['location'] as Map<String, dynamic>)['localtime'] as String;
 
+    final localForecastList = <ForecastModel>[];
+    for (final item in forecastList) {
+      localForecastList.add(ForecastModel.fromJson(item));
+    }
+
     return CityModel(
-      cityName: cityName,
-      currentTemperature: currentTemperature,
-      weatherConditionText: weatherConditionText,
-      weatherConditionIconUrl: weatherConditionIconUrl,
-      windKmh: windKmh,
-      cloud: cloud,
-      localTime: localTime,
-    );
+        cityName: cityName,
+        currentTemperature: currentTemperature,
+        weatherConditionText: weatherConditionText,
+        weatherConditionIconUrl: weatherConditionIconUrl,
+        windKmh: windKmh,
+        cloud: cloud,
+        localTime: localTime,
+        forecastDays: localForecastList);
   }
 
   CityModel copyWith({List<ForecastModel>? forecastDays}) {
@@ -70,6 +76,7 @@ class CityModel extends Equatable {
         weatherConditionText,
         windKmh,
         cloud,
-        localTime
+        localTime,
+        forecastDays
       ];
 }

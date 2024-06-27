@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:weather_app/domain/models/city_model.dart';
 import 'package:weather_app/domain/models/forecast_model.dart';
@@ -7,33 +9,27 @@ class WeatherApi {
   WeatherApi({required this.apiKey});
   final Dio _dio = Dio();
 
-  Future<CityModel?> getCurrentCityWeather(String cityName) async {
+
+
+  Future<CityModel?> getCurrentCityWeather(
+      {required String cityName, int days = 3}) async {
     try {
       final response = await _dio.get(
-          'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$cityName&aqi=no');
-
+          'http://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$cityName&days=$days&aqi=no&alerts=no');
       if (response.statusCode == 200) {
-        return CityModel.fromJson(response.data as  Map<String,dynamic>);
+        final data = response.data as Map<String, dynamic>;
+        final needData2 = data['forecast'] as Map<String, dynamic>;
+
+        final forecastDay = needData2['forecastday'] as List<dynamic>;
+
+        final List<Map<String, dynamic>> listForecast = List.from(forecastDay);
+
+        return CityModel.fromJson(
+            response.data as Map<String, dynamic>, listForecast);
       } else {
         throw Exception(response);
       }
     } on Exception catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  Future<List<ForecastModel>?> getForecastForCity(
-      {required String cityName, int days = 3}) async {
-    try {
-      final response = await _dio.get(
-          'http://api.weatherapi.com/v1/forecast.json?key=7f885ebd7d5e42a199960954242206&q=$cityName&days=$days&aqi=no&alerts=no');
-      if (response.statusCode == 200) {
-        return []; // TODO return ForecastDays and decode them
-      }else{
-        throw Exception(response);
-      }
-    } on Exception catch (e) {
-      // TODO
       throw Exception(e);
     }
   }

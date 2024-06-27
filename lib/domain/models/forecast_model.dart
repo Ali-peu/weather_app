@@ -13,6 +13,17 @@ class ForecastModel extends Equatable {
       required this.forecastMinAvgTemperature,
       required this.forecastDayIcon});
 
+  static ForecastModel fromJson(Map<String, dynamic> data) {
+    return ForecastModel(
+        forecastDay: (data['date']) as String,
+        forecastMaxAvgTemperature:
+            (data['day'] as Map<String, dynamic>)['maxtemp_c'] as double,
+        forecastMinAvgTemperature:
+            (data['day'] as Map<String, dynamic>)['mintemp_c'] as double,
+        forecastDayIcon: ((data['day'] as Map<String, dynamic>)['condition']
+            as Map<String, dynamic>)['icon'] as String);
+  }
+
   @override
   List<Object?> get props => [
         forecastDay,
